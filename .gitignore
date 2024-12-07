@@ -1,0 +1,129 @@
+# ================================
+# 1. IDEs and Editors
+# ================================
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# ================================
+# 2. Byte-compiled / DLL / Pycache
+# ================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.manifest
+*.spec
+
+# ================================
+# 3. Virtual Environments / Dependencies
+# ================================
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ================================
+# 4. Django Specific
+# ================================
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+static/
+media/
+
+# ================================
+# 5. Build/Packaging
+# ================================
+build/
+dist/
+.eggs/
+*.egg-info/
+develop-eggs/
+parts/
+sdist/
+wheels/
+*.egg
+.installed.cfg
+MANIFEST
+
+# ================================
+# 6. Test / Coverage Reports
+# ================================
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# ================================
+# 7. Jupyter Notebook
+# ================================
+.ipynb_checkpoints
+
+# ================================
+# 8. Static/Media Files
+# ================================
+static/
+media/
+
+# ================================
+# 9. Docker
+# ================================
+.dockerignore
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
+volumes/
+
+# ================================
+# 10. Logs and Server Logs
+# ================================
+*.log
+gunicorn*.log
+*.uwsgi.log
+
+# ================================
+# 11. Documentation
+# ================================
+docs/_build/
+site/
+
+# ================================
+# 12. Tools and Type Checkers
+# ================================
+.mypy_cache/
+.pytype/
+.pyre/
+.dmypy.json
+dmypy.json
+
+# ================================
+# 13. Miscellaneous
+# ================================
+celerybeat-schedule
+celerybeat.pid
+*.mo
+*.pot
+.idea_modules/
+.scrapy/
+.webassets-cache/
+.Python
+*.bak
+*.swp
+*.tmp
+*.old
