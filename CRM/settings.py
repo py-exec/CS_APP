@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from decouple import config, Csv
 import os
+from dotenv import load_dotenv
+
+# بارگذاری فایل .env
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.users_app',  # User management app
+    'fernet_fields',
+    'apps.customer_app',  # User management app
     'apps.employees_app',  # Employee management app
     'apps.accounting_app',  # Accounting app
     'apps.calendar_app',  # Calendar app
@@ -91,7 +97,6 @@ CACHES = {
         'TIMEOUT': 300,
     }
 }
-
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
@@ -163,3 +168,6 @@ LOGGING = {
         },
     },
 }
+
+
+FERNET_KEYS = [os.getenv('FERNET_KEY')]
