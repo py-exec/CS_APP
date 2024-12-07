@@ -18,7 +18,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('users/', include('apps.customer_app.urls')),
@@ -26,3 +27,8 @@ urlpatterns = [
     # path('accounting/', include('apps.accounting_app.urls')),
     # path('calendar/', include('apps.calendar_app.urls')),
 ]
+
+
+# افزودن مسیر رسانه‌ها برای حالت توسعه
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

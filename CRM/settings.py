@@ -61,7 +61,7 @@ ROOT_URLCONF = 'CRM.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Path to templates
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # Path to templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,11 +119,14 @@ USE_TZ = True
 
 # Static and Media files
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# مسیر ذخیره‌سازی فایل‌های رسانه‌ای (آپلود شده توسط کاربر)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# آدرس URL برای دسترسی به فایل‌های رسانه‌ای
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_FILE_STORAGE = config(
     'DEFAULT_FILE_STORAGE', default='django.core.files.storage.FileSystemStorage'

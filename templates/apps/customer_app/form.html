@@ -1,0 +1,144 @@
+برای پیاده‌سازی ساختار قالب طبق درخواست شما و ایجاد فایل‌های HTML مطابق با مسیر CRM/templates، ساختار را به صورت زیر تنظیم می‌کنیم. در این مرحله از فایل‌های ساده‌سازی‌شده و بلاک‌های Django برای قالب‌ها استفاده می‌کنیم.
+۱. ساختار فایل‌های base
+
+این بخش پایه برای سایر قالب‌ها خواهد بود و شامل ساختار مشترک صفحه می‌شود.
+base/base.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'base/header.html' %}
+    {% include 'base/sidebar.html' %}
+
+    <main class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% include 'base/footer.html' %}
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
+
+base/header.html
+
+<header class="bg-dark text-white py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1>CRM</h1>
+        <nav>
+            <a href="#" class="text-white">Home</a> |
+            <a href="#" class="text-white">Logout</a>
+        </nav>
+    </div>
+</header>
+
+base/sidebar.html
+
+<aside>
+    <ul class="list-group">
+        <li class="list-group-item"><a href="#">داشبورد</a></li>
+        <li class="list-group-item"><a href="#">مدیریت مشتریان</a></li>
+        <li class="list-group-item"><a href="#">مدیریت کارکنان</a></li>
+        <li class="list-group-item"><a href="#">حسابداری</a></li>
+        <li class="list-group-item"><a href="#">تقویم</a></li>
+    </ul>
+</aside>
+
+base/footer.html
+
+<footer class="bg-light text-center py-2">
+    <p>&copy; 2024 CRM - تمامی حقوق محفوظ است.</p>
+</footer>
+
+shared/messages.html
+
+برای نمایش پیام‌های سیستم مانند success یا error:
+
+{% if messages %}
+<div class="container">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+shared/pagination.html
+
+برای نمایش صفحه‌بندی:
+
+<nav>
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">اول</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">قبلی</a></li>
+        {% endif %}
+        
+        <li class="page-item active"><span class="page-link">{{ page_obj.number }}</span></li>
+        
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">آخر</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+۲. ساختار apps
+customer_app
+customer_app/list.html
+
+{% extends 'base/base.html' %}
+{% block title %}لیست مشتریان{% endblock %}
+
+{% block content %}
+<h2>لیست مشتریان</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>نام</th>
+            <th>ایمیل</th>
+            <th>شماره تماس</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- حلقه نمایش مشتریان -->
+    </tbody>
+</table>
+{% include 'shared/pagination.html' %}
+{% endblock %}
+
+customer_app/detail.html
+
+{% extends 'base/base.html' %}
+{% block title %}جزئیات مشتری{% endblock %}
+
+{% block content %}
+<h2>جزئیات مشتری</h2>
+<p>نام: {{ customer.name }}</p>
+<p>ایمیل: {{ customer.email }}</p>
+<p>شماره تماس: {{ customer.phone }}</p>
+{% endblock %}
+
+customer_app/form.html
+
+{% extends 'base/base.html' %}
+{% block title %}فرم مشتری{% endblock %}
+
+{% block content %}
+<h2>فرم مشتری</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">ذخیره</button>
+</form>
+{% endblock %}
