@@ -1,0 +1,26 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="app" type="Python.DjangoServer" factoryName="Django server" activateToolWindowBeforeRun="false" singleton="false">
+    <module name="CRM" />
+    <option name="ENV_FILES" value="$PROJECT_DIR$" />
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="PARENT_ENVS" value="true" />
+    <envs>
+      <env name="DJANGO_SETTINGS_MODULE" value="CRM.settings" />
+    </envs>
+    <option name="SDK_HOME" value="" />
+    <option name="WORKING_DIRECTORY" value="$FileDir$" />
+    <option name="IS_MODULE_SDK" value="true" />
+    <option name="ADD_CONTENT_ROOTS" value="true" />
+    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <option name="launchJavascriptDebuger" value="true" />
+    <option name="port" value="8000" />
+    <option name="host" value="localhost" />
+    <option name="additionalOptions" value="" />
+    <option name="browserUrl" value="http://localhost:8000" />
+    <option name="runTestServer" value="true" />
+    <option name="runNoReload" value="false" />
+    <option name="useCustomRunCommand" value="false" />
+    <option name="customRunCommand" value="" />
+    <method v="2" />
+  </configuration>
+</component>
